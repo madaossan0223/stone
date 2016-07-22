@@ -5,6 +5,19 @@ import java.util.HashSet;
 import stone.Parser.Operators;
 import stone.ast.*;
 
+/*
+ * program 的 BNF 文法.
+ *
+ * primary:    "(" expr ")" | NUMBER | IDENTIFIER | STRING
+ * factor:     "-" primary | primary
+ * expr:       factor { OP factor }
+ * block:      "{" [ statement ] {(";" | EOL) [ statement ]} "}"
+ * simple:     expr
+ * statement:  "if" expr block [ "else" block ]
+ *             | "while" expr block
+ *             | simple
+ * program:    [ statement ] (";" | EOL)
+ */
 public class BasicParser {
     HashSet<String> reserved = new HashSet<String>();
     Operators operators = new Operators();
